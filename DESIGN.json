@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-14T00:00:00.000Z",
+  "title": "Design System: QuickBooks (Global) — Redesign Target",
+  "extensions": {
+    "colorMeta": {
+      "primary-green": { "role": "primary", "displayName": "QuickBooks Green", "canonical": "#2CA01C" },
+      "accent-green-bright": { "role": "secondary", "displayName": "Bright Signal Green", "canonical": "#0FD46C" },
+      "accent-teal": { "role": "secondary", "displayName": "Signal Teal", "canonical": "#00D7D7" },
+      "surface-dark-brand": { "role": "secondary", "displayName": "Deep Brand Navy", "canonical": "#0D333F" },
+      "surface": { "role": "neutral", "displayName": "Paper White", "canonical": "#FFFFFF" },
+      "surface-warm-neutral": { "role": "neutral", "displayName": "Warm Off-White", "canonical": "#F7F8F3" },
+      "text-primary": { "role": "neutral", "displayName": "Ink Black", "canonical": "#000000" },
+      "text-secondary": { "role": "neutral", "displayName": "Graphite", "canonical": "#393A3D" },
+      "text-on-dark": { "role": "neutral", "displayName": "Paper White (on dark)", "canonical": "#FFFFFF" },
+      "text-muted": { "role": "neutral", "displayName": "Muted Grey", "canonical": "#8D9096" },
+      "link": { "role": "neutral", "displayName": "Link Blue", "canonical": "#0000EE" }
+    },
+    "typographyMeta": {
+      "body": { "displayName": "Body", "purpose": "Form labels, tile descriptions, footer link text." },
+      "display": { "displayName": "Display", "purpose": "Page-level headline." },
+      "title": { "displayName": "Title", "purpose": "Promo-tile headlines." },
+      "label": { "displayName": "Label", "purpose": "Eyebrow/category labels distinguishing footer zones." }
+    },
+    "shadows": [
+      { "name": "floating-overlay", "value": "rgba(0,0,0,0.15) 0px 10px 40px 0px, rgba(0,0,0,0.15) 0px 4px 4px 0px", "purpose": "Chat widget expanded popup (inherited unchanged)." }
+    ],
+    "motion": {},
+    "breakpoints": [
+      { "name": "mobile", "value": "375px" },
+      { "name": "tablet", "value": "768px" },
+      { "name": "desktop", "value": "1280px" }
+    ],
+    "divergence": {
+      "toolkit_version": "v1.0 (stardust v2)",
+      "mode": "Mode A (brand-faithful)",
+      "seed": {
+        "input": "QuickBooks|2026-08-14",
+        "decade": "2025-now",
+        "craft": "Technical illustration",
+        "register": "Field guide",
+        "ground_family": {
+          "value": "stark-white",
+          "override": {
+            "reason": "brand-faithful",
+            "note": "Deterministic roll produced 'pale-gray'; Mode C override applies because the brand's captured ground is #FFFFFF stark-white, which wins over the seed roll."
+          }
+        },
+        "picked_by": "reasoned",
+        "notes": "Deterministic hash roll (byte-indexed against QuickBooks|2026-08-14) produced category-incoherent picks (craft: Photogram, register: Tabloid) for a B2B fintech login page. Per divergence-toolkit.md's research-first default, decade/craft/register were instead reasoned directly from the brand's category (current fintech SaaS, trust-critical, multi-audience) rather than forced from the roll. Ground-family used the Mode C brand-faithful override regardless.",
+        "overrides": ["decade", "craft", "register"]
+      },
+      "font_deck": {
+        "name": "brand-inherited",
+        "picked_by": "user-constraint",
+        "families": ["\"AvenirNext forINTUIT\", Helvetica, Arial, sans-serif", "\"AvenirNext forINTUIT\", Avenir, Helvetica, Arial, sans-serif"]
+      },
+      "palette_source": {
+        "source": "inherited from stardust/current/_brand-extraction.json",
+        "picked_by": "user-constraint"
+      },
+      "anti_toolbox_count": 1,
+      "anti_toolbox_hits": [
+        {
+          "move": "Sticky top navigation",
+          "justification": "Inherited directly from the captured site's own existing header pattern under Mode A brand-faithful inheritance — not a stylistic reach or assistant default. The captured page already uses a sticky-feeling persistent top nav; carrying it forward is fidelity, not a toolbox hit by the assistant's own initiative."
+        }
+      ],
+      "off_toolbox_moves": [],
+      "audit_adjustments": [],
+      "references_used": [],
+      "brand_faithful_inversions": [
+        {
+          "pattern": "Pure white / pure black in palette",
+          "note": "Captured brand ground is literal #FFFFFF and primary text is literal #000000 — both retained verbatim despite being flagged in some detectors as 'no pure black/white' hard rules. Brand-faithful mode overrides that rule per the inherited captured surface."
+        }
+      ]
+    },
+    "componentStyle": {
+      "buttons": {
+        "shape": "8px radius",
+        "primary": { "background": "{colors.surface-dark-brand}", "text": "{colors.text-on-dark}" },
+        "focusRing": "2px solid #0FD46C, 2px offset"
+      },
+      "cards": {
+        "shape": "8px radius",
+        "shadowStrategy": "none — color-block separation only"
+      },
+      "inputs": {
+        "shape": "4px radius",
+        "focusRing": "2px solid #0FD46C"
+      },
+      "dualCTAPattern": {
+        "description": "Header Login control + page-level sign-in card both target the same action. Resolved by subordinating the header control (ghost/text-only) when the sign-in card is present on the same page."
+      }
+    },
+    "systemComponentRoles": {
+      "header": {
+        "purpose": "Persistent site navigation + region selector + auth entry point.",
+        "positionClass": "sticky-top"
+      },
+      "footer": {
+        "purpose": "Site-wide utility navigation plus legal/trust-signal transparency.",
+        "positionClass": "page-end",
+        "constraint": "Utility-navigation and trust-signal content render as two visually distinct zones (Design Principle 4) — not one undifferentiated link wall."
+      },
+      "persistent-help": {
+        "purpose": "Floating chat launcher — signature interactive element, preserved per signature-preservation rules.",
+        "positionClass": "fixed-bottom-right"
+      }
+    },
+    "iaPriorities": [
+      {
+        "signal": "audience-routing",
+        "evidence": "pages/global-login.json#ctas contains both 'QuickBooks Online' and 'QuickBooks Online Accountant' as a radio choice above the fold, routing two distinct audiences (business owner vs. accountant) to the same sign-in action.",
+        "preserveAs": "first-viewport",
+        "scope": "site-wide",
+        "mutability": "movable"
+      },
+      {
+        "signal": "commercial-conversion (adjacent)",
+        "evidence": "pages/global-login.json#headings contains three promo-tile headlines (Banks/Invoices/Expenses) each with a 'Learn more' CTA, positioned alongside — not competing with — the sign-in action.",
+        "preserveAs": "supporting-panel, not first-viewport-primary",
+        "scope": "page-local",
+        "mutability": "movable"
+      }
+    ],
+    "voice": {
+      "do": [
+        "Lead with automation/speed framing for capability descriptions (\"automatically\", \"in seconds\", \"in an instant\") — matches the captured register.",
+        "Reuse existing account-type and CTA labels verbatim (\"QuickBooks Online\", \"QuickBooks Online Accountant\", \"Continue to sign in\")."
+      ],
+      "don't": [
+        "Don't introduce editorial-register vocabulary (\"atelier\", \"dispatch\", \"the journal\") — this is a product/utility register, not editorial.",
+        "Don't rename the two account-type options or the primary CTA label."
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-width dark navy button used for the main sign-in action, now with an explicit focus-visible treatment.",
+      "html": "<button class=\"ds-btn-primary\">Continue to sign in</button>",
+      "css": ".ds-btn-primary { background: #0D333F; color: #FFFFFF; padding: 14px 24px; border: none; border-radius: 8px; font-family: \"AvenirNext forINTUIT\", Helvetica, Arial, sans-serif; font-weight: 700; width: 100%; transition: background 0.2s; } .ds-btn-primary:hover { background: #0a2732; } .ds-btn-primary:focus-visible { outline: 2px solid #0FD46C; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button (subordinated header login)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Text-only header Login control, subordinated on pages where a primary sign-in card is already present (Improvements #2).",
+      "html": "<button class=\"ds-btn-ghost\">Login</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: #0D333F; padding: 8px 12px; border: none; font-family: \"AvenirNext forINTUIT\", Helvetica, Arial, sans-serif; font-weight: 700; text-decoration: none; } .ds-btn-ghost:hover { text-decoration: underline; } .ds-btn-ghost:focus-visible { outline: 2px solid #0FD46C; outline-offset: 2px; }"
+    },
+    {
+      "name": "Promo Tile (card)",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Full-color brand card pairing an icon, bold headline, one sentence of copy, and a CTA — unchanged structure, now resolved to the web-refresh token generation.",
+      "html": "<div class=\"ds-promo-tile\"><span class=\"ds-promo-icon\" aria-hidden=\"true\">🏦</span><h3 class=\"ds-promo-title\">Track and manage bank transactions automatically</h3><p class=\"ds-promo-body\">Connect your bank to QuickBooks to set up bank feeds so your bank transactions flow into QuickBooks automatically</p><button class=\"ds-btn-accent\">Learn more</button></div>",
+      "css": ".ds-promo-tile { background: #0D333F; color: #FFFFFF; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 12px; font-family: \"AvenirNext forINTUIT\", Helvetica, Arial, sans-serif; } .ds-promo-title { font-size: 1.25rem; font-weight: 700; margin: 0; } .ds-promo-body { font-size: 0.95rem; opacity: 0.9; margin: 0; }"
+    },
+    {
+      "name": "Floating Chat Launcher",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Fixed bottom-right circular launcher — signature component, preserved unchanged from the captured site.",
+      "html": "<button class=\"ds-chat-launcher\" aria-label=\"Open chat\">💬</button>",
+      "css": ".ds-chat-launcher { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: #0FD46C; border: none; box-shadow: rgba(0,0,0,0.15) 0px 10px 40px 0px, rgba(0,0,0,0.15) 0px 4px 4px 0px; font-size: 1.5rem; cursor: pointer; } .ds-chat-launcher:focus-visible { outline: 2px solid #0D333F; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Resolved Refresh",
+    "overview": "This is a brand-faithful modernization, not a rebrand. QuickBooks' green/navy/teal identity, its AvenirNext forINTUIT typeface, and its bounded-color-block visual language all carry forward unchanged — the redesign resolves what the captured site left unresolved: two competing token generations, a fragmented sign-in/promo relationship, thin alt-text coverage, and an undifferentiated footer.",
+    "keyCharacteristics": [
+      "Same palette, same type, same bounded-color-block motif language as the captured site",
+      "One design idea ties the sign-in card to the promo carousel",
+      "Legacy and web-refresh CSS token generations resolved to one",
+      "Footer restructured into clearly separated utility-navigation and trust-signal zones",
+      "100% of informational icons and logos carry descriptive alt text"
+    ],
+    "rules": [
+      { "name": "The Bounded Color Rule", "body": "Saturated brand color never spans the full page background — it appears only inside rounded-rect blocks.", "section": "colors" },
+      { "name": "The One-Generation Rule", "body": "Every component resolves to the --web-refresh-* token generation; no legacy token references.", "section": "colors" },
+      { "name": "The Single-Family Rule", "body": "AvenirNext forINTUIT carries every text role; no second typeface is introduced.", "section": "typography" },
+      { "name": "The Flat-Card Rule", "body": "Primary content cards are distinguished by fill color and rounded corners, not shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the exact captured palette and typeface — this is a brand-faithful modernization, not a rebrand.",
+      "Do resolve every component to the --web-refresh-* token generation; treat legacy tokens as deprecated on this page.",
+      "Do label every informational icon and logo with descriptive alt text.",
+      "Do keep the sign-in action as the first, most prominent interactive element on the page."
+    ],
+    "donts": [
+      "Don't introduce a second typeface family or a color outside the captured palette.",
+      "Don't strip the page to a minimal centered-card auth shell.",
+      "Don't let the header's Login control visually compete with the page's own sign-in card.",
+      "Don't apply drop shadows to primary content cards."
+    ]
+  }
+}

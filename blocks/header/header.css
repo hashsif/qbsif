@@ -1,6 +1,7 @@
-/* header and nav layout */
+/* header and nav layout — QuickBooks chrome */
 header .nav-wrapper {
   background-color: var(--background-color);
+  border-bottom: 1px solid var(--surface-alt-color);
   width: 100%;
   z-index: 2;
   position: fixed;
@@ -13,11 +14,11 @@ header nav {
     'hamburger brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 24px;
+  gap: 0 var(--spacing-lg);
   margin: auto;
   max-width: 1248px;
   height: var(--nav-height);
-  padding: 0 24px;
+  padding: 0 var(--spacing-lg);
   font-family: var(--body-font-family);
 }
 
@@ -38,9 +39,9 @@ header nav[aria-expanded='true'] {
   header nav {
     display: flex;
     justify-content: space-between;
-    gap: 0 32px;
+    gap: 0 var(--spacing-xl);
     max-width: 1264px;
-    padding: 0 32px;
+    padding: 0 var(--spacing-xl);
   }
 
   header nav[aria-expanded='true'] {
@@ -55,7 +56,8 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 /* hamburger */
@@ -145,7 +147,22 @@ header .nav-brand {
   flex-basis: 128px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
-  line-height: 1;
+}
+
+header nav .nav-brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+header nav .nav-brand a::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: var(--primary-green);
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 header nav .nav-brand img {
@@ -153,7 +170,7 @@ header nav .nav-brand img {
   height: auto;
 }
 
-/* sections */
+/* sections (link list) */
 header nav .nav-sections {
   grid-area: sections;
   flex: 1 1 auto;
@@ -174,14 +191,6 @@ header nav .nav-sections ul {
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 500;
-}
-
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
-}
-
-header nav .nav-sections ul > li > ul > li {
   font-weight: 400;
 }
 
@@ -196,35 +205,9 @@ header nav .nav-sections ul > li > ul > li {
     align-self: unset;
   }
 
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
-  }
-
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: var(--spacing-lg);
     margin: 0;
   }
 
@@ -232,41 +215,28 @@ header nav .nav-sections ul > li > ul > li {
     flex: 0 1 auto;
     position: relative;
   }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
-  }
 }
 
-/* tools */
+/* tools (region + login) */
 header nav .nav-tools {
   grid-area: tools;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+header nav .nav-tools .button-wrapper {
+  margin: 0;
+}
+
+header nav .nav-tools a.button.secondary {
+  border: none;
+  padding: 8px 12px;
+  color: var(--navy-color);
+  font-weight: 700;
+}
+
+header nav .nav-tools a.button.secondary:hover {
+  background: transparent;
+  text-decoration: underline;
 }
