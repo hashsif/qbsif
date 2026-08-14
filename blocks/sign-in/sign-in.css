@@ -1,0 +1,187 @@
+.sign-in-container {
+  background: var(--surface-alt-color);
+}
+
+.sign-in-container .sign-in-wrapper {
+  position: relative;
+}
+
+.sign-in-container .sign-in-wrapper::before {
+  content: '';
+  display: block;
+  height: 6px;
+  max-width: 1200px;
+  margin: 0 auto var(--spacing-xl);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--primary-green) 0%, var(--accent-green-bright) 100%);
+}
+
+.sign-in .wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+.sign-in .sign-in-card,
+.sign-in .promo-tile {
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+}
+
+.sign-in .sign-in-card {
+  background: var(--background-color);
+  border-top: 4px solid var(--navy-color);
+}
+
+.sign-in .sign-in-card h1 {
+  font-size: var(--heading-font-size-xxl);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.sign-in .sign-in-label {
+  font-size: var(--body-font-size-s);
+  color: var(--text-secondary-color);
+  margin: 0 0 var(--spacing-md);
+}
+
+.sign-in .radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.sign-in .radio-option {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--surface-alt-color);
+  border-radius: var(--radius-sm);
+}
+
+.sign-in .radio-option:has(input:checked) {
+  border-color: var(--primary-green);
+}
+
+.sign-in .radio-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-green);
+  flex-shrink: 0;
+}
+
+.sign-in .radio-option label {
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sign-in .sign-in-cta {
+  margin: 0;
+}
+
+.sign-in .sign-in-cta a.button {
+  width: 100%;
+}
+
+.sign-in .sign-in-legal {
+  margin-top: var(--spacing-lg);
+  font-size: var(--body-font-size-s);
+  color: var(--text-secondary-color);
+}
+
+.sign-in .sign-in-legal a {
+  color: var(--text-secondary-color);
+  text-decoration: underline;
+}
+
+.sign-in .promos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+.sign-in .promo-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  color: var(--text-on-dark-color);
+}
+
+.sign-in .promo-tile[data-tile="banks"] {
+  background: var(--navy-color);
+}
+
+.sign-in .promo-tile[data-tile="invoices"] {
+  background: var(--accent-teal);
+  color: var(--navy-color);
+}
+
+.sign-in .promo-tile[data-tile="expenses"] {
+  background: var(--primary-green);
+}
+
+.sign-in .promo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.sign-in .promo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sign-in .promo-tile h3,
+.sign-in .promo-tile h4 {
+  font-size: var(--heading-font-size-l);
+  margin: 0;
+  color: inherit;
+}
+
+.sign-in .promo-tile p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  color: inherit;
+  opacity: 0.95;
+}
+
+/* WCAG AA fix: pinned brand green (#2CA01C) is ~3.4:1 with white body text — below the
+   4.5:1 floor for regular-weight text. A dark scrim strip keeps the tile's identity
+   color untouched while clearing AA (verified ~5:1 with a 20% black wash). */
+.sign-in .promo-tile[data-tile="expenses"] p {
+  background: rgb(0 0 0 / 20%);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  margin: 0 calc(var(--spacing-sm) * -1);
+  opacity: 1;
+}
+
+.sign-in .promo-cta {
+  margin: var(--spacing-sm) 0 0;
+}
+
+.sign-in .promo-cta a.button {
+  background: var(--background-color);
+  color: var(--navy-color);
+  border-color: var(--background-color);
+  padding: 10px 18px;
+  font-size: var(--body-font-size-s);
+}
+
+.sign-in .promo-cta a.button:hover {
+  opacity: 0.85;
+  background: var(--background-color);
+  border-color: var(--background-color);
+}
+
+.sign-in .promo-tile[data-tile="invoices"] .promo-cta a.button {
+  color: var(--navy-color);
+}
+
+@media (width >= 1024px) {
+  .sign-in .wrap {
+    grid-template-columns: 5fr 7fr;
+    align-items: stretch;
+  }
+}

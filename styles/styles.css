@@ -1,72 +1,78 @@
 /*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * QuickBooks (Global) — brand-faithful modernization
+ * Tokens lifted verbatim from stardust/prototypes/global-login-proposed.html :root
+ * per DESIGN.md. See stardust/direction.md for the full reasoning trace.
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* colors — pinned brand palette (Mode A brand-faithful) */
+  --background-color: #FFF;
+  --surface-alt-color: #F7F8F3;
+  --text-color: #000;
+  --text-secondary-color: #393A3D;
+  --text-muted-color: #8D9096;
+  --text-on-dark-color: #FFF;
+  --primary-green: #2CA01C;
+  --accent-green-bright: #0FD46C;
+  --accent-teal: #00D7D7;
+  --navy-color: #0D333F;
+  --navy-hover-color: #0a2732;
+  --link-color: #00E;
+  --link-hover-color: #0a2732;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* fonts — AvenirNext forINTUIT is proprietary to Intuit and unavailable for this
+     conversion (see fonts/LICENSING.md); Hanken Grotesk self-hosted as a redistributable
+     substitute with a similar humanist-grotesque character. */
+  --body-font-family: 'Hanken Grotesk Variable', hanken-grotesk-fallback, sans-serif;
+  --heading-font-family: 'Hanken Grotesk Variable', hanken-grotesk-fallback, sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 22px;
+  --heading-font-size-m: 18px;
+  --heading-font-size-s: 16px;
+  --heading-font-size-xs: 14px;
 
-  /* nav height */
+  /* spacing scale */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 64px;
+
+  /* shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 40px;
+
+  /* elevation */
+  --shadow-floating: rgb(0 0 0 / 15%) 0px 10px 40px 0px, rgb(0 0 0 / 15%) 0px 4px 4px 0px;
+
+  /* nav height — reserved to match the QuickBooks chrome's real rendered height (#81) */
   --nav-height: 64px;
 }
 
-/* fallback fonts */
+/* fallback font — the metric-matched calibration this face would normally carry
+   (size-adjust/ascent-override/descent-override) was not computed for this run
+   (brotli/fontTools decode unavailable) — see fonts/LICENSING.md § Fallback
+   calibration. Instead `font-size-adjust: from-font` on body/headings (below) asks
+   the browser to match x-height against the primary font stack automatically. */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
+  font-family: hanken-grotesk-fallback;
   src: local('Arial');
 }
 
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-xxl: 44px;
+    --heading-font-size-xl: 34px;
   }
 }
 
@@ -77,7 +83,8 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.5;
+  font-size-adjust: from-font;
 }
 
 body.appear {
@@ -86,6 +93,11 @@ body.appear {
 
 header {
   height: var(--nav-height);
+  background: var(--background-color);
+}
+
+@media (width <= 767px) {
+  :root { --nav-height: 64px; }
 }
 
 header .header,
@@ -107,9 +119,10 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: 1.2;
   scroll-margin: 40px;
+  color: var(--text-color);
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -136,8 +149,8 @@ pre {
 
 pre {
   padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-alt-color);
   overflow-x: auto;
   white-space: pre;
 }
@@ -165,9 +178,18 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+:focus-visible {
+  outline: 2px solid var(--accent-green-bright);
+  outline-offset: 2px;
+}
+
+/* buttons — brand-faithful button system (Bounded Color Rule, DESIGN.md) */
 p.button-wrapper {
-  margin: 12px 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: center;
+  margin: var(--spacing-sm) 0;
 }
 
 a.button:any-link,
@@ -176,19 +198,21 @@ button.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   max-width: 100%;
   margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 14px 24px;
   font: inherit;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.25;
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 a.button[aria-disabled="true"],
@@ -197,88 +221,99 @@ button.button:disabled {
   pointer-events: none;
 }
 
+/* primary — dark navy fill, white text (DESIGN.md button-primary) */
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+  border-color: var(--navy-color);
+  background-color: var(--navy-color);
+  color: var(--text-on-dark-color);
 }
 
 a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+  border-color: var(--navy-hover-color);
+  background-color: var(--navy-hover-color);
 }
 
 a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+button.button.primary:disabled {
+  background-color: var(--surface-alt-color);
+  border-color: var(--surface-alt-color);
+  color: var(--text-muted-color);
 }
 
+/* secondary — outline, brand-navy text on light surfaces */
 a.button.secondary,
 button.button.secondary {
-  border-color: var(--text-color);
+  border-color: var(--navy-color);
   background-color: transparent;
-  color: var(--text-color);
+  color: var(--navy-color);
 }
 
 a.button.secondary:hover,
 a.button.secondary:focus-visible,
 button.button.secondary:hover,
 button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+  border-color: var(--navy-hover-color);
+  background-color: var(--surface-alt-color);
+  color: var(--navy-hover-color);
 }
 
 a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+button.button.secondary:disabled {
+  background-color: var(--surface-alt-color);
+  border-color: var(--surface-alt-color);
+  color: var(--text-muted-color);
 }
 
-/* high-impact call-to-action */
+/* on-dark surfaces (chat launcher, dark tiles): light outline for secondary */
+.sign-in a.button.secondary {
+  border-color: rgb(255 255 255 / 40%);
+  color: var(--text-on-dark-color);
+}
+
+.sign-in a.button.secondary:hover {
+  border-color: var(--text-on-dark-color);
+  background-color: rgb(255 255 255 / 8%);
+}
+
+main .section.dark a.button.secondary {
+  border-color: rgb(255 255 255 / 40%);
+  color: var(--text-on-dark-color);
+}
+
+main .section.dark a.button.secondary:hover {
+  border-color: var(--text-on-dark-color);
+  background-color: rgb(255 255 255 / 8%);
+}
+
+/* accent — high-impact CTA, sparingly (DESIGN.md button-accent) */
 a.button.accent,
 button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
+  border-color: var(--primary-green);
+  background-color: var(--primary-green);
+  color: var(--text-on-dark-color);
 }
 
 a.button.accent:hover,
 a.button.accent:focus-visible,
 button.button.accent:hover,
 button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+  border-color: #248018;
+  background-color: #248018;
 }
 
 a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+button.button.accent:disabled {
+  background-color: var(--surface-alt-color);
+  border-color: var(--surface-alt-color);
+  color: var(--text-muted-color);
 }
 
 main img {
+  display: block;
   max-width: 100%;
   width: auto;
   height: auto;
@@ -295,15 +330,19 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* sections — EDS default scaffold, retuned to balanced density (64px desktop) */
 main > .section {
-  margin: 40px 0;
+  margin: var(--spacing-2xl) 0;
+}
+
+main > .section:empty {
+  display: none;
 }
 
 main > .section > div {
   max-width: 1200px;
   margin: auto;
-  padding: 0 24px;
+  padding: 0 var(--spacing-lg);
 }
 
 main > .section:first-of-type {
@@ -312,14 +351,27 @@ main > .section:first-of-type {
 
 @media (width >= 900px) {
   main > .section > div {
-    padding: 0 32px;
+    padding: 0 var(--spacing-xl);
   }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
+/* section metadata — small closed set for default-content sections (D1) */
+main .section.dark {
+  background-color: var(--navy-color);
+  color: var(--text-on-dark-color);
   margin: 0;
-  padding: 40px 0;
+  padding: var(--spacing-2xl) 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4 {
+  color: var(--text-on-dark-color);
+}
+
+main .section.tinted {
+  background-color: var(--surface-alt-color);
+  margin: 0;
+  padding: var(--spacing-2xl) 0;
 }

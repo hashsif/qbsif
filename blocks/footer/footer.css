@@ -1,20 +1,134 @@
 footer {
-  background-color: var(--light-color);
+  margin-top: var(--spacing-xl);
   font-size: var(--body-font-size-xs);
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer {
+  display: block;
 }
 
-footer .footer p {
-  margin: 0;
+/* tinted — Tools and Templates band (section-metadata "tinted") */
+footer .footer .section.tinted {
+  background: var(--navy-color);
+  color: var(--text-on-dark-color);
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+footer .footer .section.tinted h3 {
+  font-size: var(--heading-font-size-m);
+  margin: 0 0 var(--spacing-sm);
+  color: inherit;
+}
+
+footer .footer .section.tinted p {
+  color: rgb(255 255 255 / 75%);
+  max-width: 40ch;
+}
+
+footer .footer .section.tinted ul {
+  list-style: none;
+  margin: 0 0 var(--spacing-lg);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+}
+
+footer .footer .section.tinted a {
+  color: var(--text-on-dark-color);
+  text-decoration: underline;
+}
+
+/* trust-signal zone — dark, high-contrast (section-metadata "dark") */
+footer .footer .section.dark {
+  background: #000;
+  color: var(--text-on-dark-color);
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+footer .footer .section.dark > p:first-child {
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted-color);
+  margin-bottom: var(--spacing-md);
+}
+
+footer .footer .section.dark ul {
+  list-style: none;
+  margin: 0 0 var(--spacing-lg);
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+footer .footer .section.dark a {
+  color: var(--text-on-dark-color);
+  text-decoration: underline;
+  font-size: var(--body-font-size-s);
+}
+
+footer .footer .section.dark p:last-child {
+  font-size: 12px;
+  color: var(--text-muted-color);
+  max-width: 80ch;
+}
+
+/* utility-navigation zone — 4-column link grid on warm off-white (default section,
+   i.e. neither .tinted nor .dark). Declared last so its :not() selector — whose
+   specificity is equal to a single class — never wins a tie against the .tinted/.dark
+   rules above for the shared `a`/`a:hover` declarations. */
+footer .footer .section:not(.tinted, .dark) {
+  background: var(--surface-alt-color);
+  padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-xl);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+footer .footer .section:not(.tinted, .dark) h3 {
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary-color);
+  margin: 0 0 var(--spacing-md);
+}
+
+footer .footer .section:not(.tinted, .dark) ul {
+  list-style: none;
+  margin: 0 0 var(--spacing-lg);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+footer .footer .section:not(.tinted, .dark) a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+footer .footer .section:not(.tinted, .dark) a:hover {
+  text-decoration: underline;
 }
 
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer .section:not(.tinted, .dark) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: var(--spacing-2xl) var(--spacing-xl) var(--spacing-xl);
+  }
+
+  footer .footer .section.tinted,
+  footer .footer .section.dark {
+    padding: var(--spacing-xl);
+  }
+
+  footer .footer .section.tinted ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  footer .footer .section.dark ul {
+    justify-content: flex-start;
   }
 }
